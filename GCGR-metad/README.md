@@ -1,4 +1,4 @@
-## Input files to replicate (A Combined Activation Mechanism for the Glucagon Receptor)
+## Input files: A Combined Activation Mechanism for the Glucagon Receptor
 ### Authors: Giulio Mattedi, Silvia Acosta-Gutiérrez, Timothy Clark, and Francesco L. Gervasio
 #### Files provided:
 - System intial coordinates and topology
