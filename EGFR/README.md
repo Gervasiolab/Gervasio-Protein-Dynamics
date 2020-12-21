@@ -4,4 +4,4 @@
 ##### Files provided:
 - System intial coordinates and topology
 - MD engine input file
-- Plumed file and required pdb files for CV calculation
+- Plumed and required PDB files for CV calculation
