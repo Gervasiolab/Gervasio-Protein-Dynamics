@@ -1,0 +1,53 @@
+RESTART
+MOLINFO STRUCTURE=npt_FQEA.pdb
+WHOLEMOLECULES ENTITY0=1-4779
+# Distances describing the two saltbridges K745(NZ):E762(CD) and K745(ΝΖ):D855(CG)
+# that reflect the conformation of the aC helix
+# (CVs described in Ludo's paper doi:10.1073/pnas.1221953110)
+
+K745_E762: DISTANCE ATOMS=745,1078
+K745_D855: DISTANCE ATOMS=745,2583
+
+# Distance between the two distance
+# When both saltbridges are formed, the distance between the two distances (CV)
+# is close to 0. This CV is able to characterise the displacement of the fuctionally important
+# E762 located in the aC helix of the N-lobe in its transition from the so-called "aC-in" to "aC-out" conformation
+MATHEVAL ...
+    LABEL=d
+    ARG=K745_E762,K745_D855
+    VAR=a,b
+    FUNC=a-b
+    PERIODIC=NO
+... MATHEVAL
+
+# Distance from active cmap
+INCLUDE FILE=cmap_active_fqea.dat
+
+# Distance form inactive cmap
+INCLUDE FILE=cmap_inactive_fqea.dat
+
+# Confine the explored space
+lwall: LOWER_WALLS ARG=d AT=-1.5 KAPPA=4000.0
+uwall: UPPER_WALLS ARG=cmap_active,cmap_inactive,d AT=90,90,2.5 KAPPA=3500.0,3500.0,4000.0
+
+# Activate metaD in energy (Well Tempered Ensemble) 
+# Gaussians from an initial metaD sim where the energy was biased
+# will be loaded to perform the second metaD in the WTE
+ene: ENERGY
+METAD ...
+    LABEL=wte
+    ARG=ene PACE=1000000 HEIGHT=2 SIGMA=100 # Deposit a Gaussian to the potential energy every 2 ns
+    FILE=HILLS_PTWE
+    BIASFACTOR=15 TEMP=@replicas:300,305,310,318,326,335,344,354,363,375,382
+... METAD
+
+# Activate metaD on the rest of the CVs
+METAD ...
+    LABEL=meta
+    ARG=cmap_active,cmap_inactive,d HEIGHT=3.0 SIGMA=0.75,0.75,0.15 PACE=500 
+    GRID_MIN=0,0,-2 GRID_MAX=95,95,3 GRID_SPACING=0.35,0.35,0.075 
+    BIASFACTOR=10 TEMP=@replicas:300,305,310,318,326,335,344,354,363,375,382
+... METAD
+
+PRINT ARG=* STRIDE=500 FILE=COLVAR FMT=%8.4f
+
