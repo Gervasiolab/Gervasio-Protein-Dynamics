@@ -1,0 +1,30 @@
+MOLINFO STRUCTURE=NPGins_active.pdb 
+WHOLEMOLECULES ENTITY0=1-4752
+# Distances describing the two saltbridges K745(NZ):E762(CD) and K745(ΝΖ):D855(CG)
+# that reflect the conformation of the aC helix
+# (CVs described in Ludo's paper doi:10.1073/pnas.1221953110)
+K745_E762: DISTANCE ATOMS=745,1016
+K745_D855: DISTANCE ATOMS=745,2556
+
+# Distance between the two distance
+# When both saltbridges are formed, the distance between the two distances (CV)
+# is close to 0. This CV is able to characterise the displacement of the fuctionally important
+# E762 located in the aC helix of the N-lobe in its transition from the so-called "aC-in" to "aC-out" conformation
+MATHEVAL ...
+    LABEL=d
+    ARG=K745_E762,K745_D855
+    VAR=a,b
+    FUNC=a-b
+    PERIODIC=NO
+... MATHEVAL
+
+# Distance from active cmap
+INCLUDE FILE=cmap_active.dat
+
+# Distance form inactive cmap
+INCLUDE FILE=cmap_inactive.dat
+
+# Monitor the helical content of the aC-helix to probe 
+# its intrisically disordered nature in the monomeric form
+armsd: ALPHARMSD RESIDUES=751-773 TYPE=DRMSD R_0=0.08 D_0=0.0 NN=8 MM=12
+
