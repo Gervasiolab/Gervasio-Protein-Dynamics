@@ -4,7 +4,7 @@
 
 # SWISH bootcamp
 
-This project contains the files required to setup a SWISH simulation, along with an example project (TEM-1 β-lactamase) and a guide for analysis.
+This project contains the files required to setup a SWISH simulation, along with an example project (TEM-1 β-lactamase) and a guide for analysis. With respect to the results published in the 2016 JACS (https://pubs.acs.org/doi/10.1021/jacs.6b05425), here we are using an updated force-field and new analysis scripts. The results are equivalent to those discussed in the paper.
 
 ## Getting started
 ### Quick summary of the method (SWISH)
