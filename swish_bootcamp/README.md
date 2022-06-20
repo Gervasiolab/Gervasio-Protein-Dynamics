@@ -88,9 +88,9 @@ gmx insert-molecules -f 1jwp_ions.gro -o 1jwp_benz.gro -ci benzene.gro -nmol 215
 ```
 The number of benzene molecules to add to reach the target molar concentration x (1 in this example) can be calculated with the following formula:
 
-```math
-probes = \frac{(6.023 \cdot 10^{23} \cdot x \cdot 29.94A^3 \cdot waters)}{10^{27} A^3}
-```
+
+$$ probes = \frac{(6.023 \cdot 10^{23} \cdot x \cdot 29.94A^3 \cdot waters)}{10^{27} A^3} $$
+
 and the number of water molecules (SOL) can be obtained from the previously generated topology (Step 2, `1jwp_ions.top`):
 ```
 [ molecules ]
