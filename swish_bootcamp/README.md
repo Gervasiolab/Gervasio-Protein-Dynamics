@@ -8,7 +8,7 @@ This project contains the files required to setup a SWISH simulation, along with
 
 ## Getting started
 ### Quick summary of the method (SWISH)
-Repetita iuvant:
+
 What is SWISH?
 SWISH (Sampling Water Interfaces through Scaled Hamiltonians, https://pubs.acs.org/doi/10.1021/jacs.6b05425) is a Hamiltonian Replica Exchange-based method. SWISH simulations combined with organic probes were shown to be a robust general approach for cryptic site discovery. By progressively scaling the nonbonded interactions of solvent molecules with apolar (carbon and sulfur) protein atoms, SWISH shifts the water properties toward more ligand-like behavior to increase cryptic site opening. The higher the value of scaling factor λ, the stronger the water affinity for apolar protein surface patches.
 SWISH can be used in two different ways, a validation mode and a discovery mode. The validation mode is typically done to sample known cryptic sites whereas the discovery mode is typically employed to sample new cryptic sites in a protein's structure. The setup of a SWISH simulation is virtually identical in both cases.
