@@ -1,0 +1,7 @@
+[ nonbond_params ]
+; type_i type_j  f.type   sigma   epsilon
+; f.type=1 means LJ (not Buckingham)
+; sigma&eps since mixing-rule = 2
+; interligand repulsion
+ca           ca          1   8.000000e-01   1.500000e-03
+

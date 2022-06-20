@@ -1,0 +1,16 @@
+######################
+#plumed.dat for SWISH#
+######################
+#RESTART
+#####################
+### RESTRAINT CMAP ###
+#####################
+MOLINFO STRUCTURE=../1jwp_cmap.pdb
+INCLUDE FILE=../1jwp_cmap.dat
+WHOLEMOLECULES STRIDE=1 ENTITY0=1-4066
+uwall: UPPER_WALLS ARG=cmap AT=30 KAPPA=500.0 EXP=2 EPS=1 # Upper Wall (restraint_4_swish)
+#####################
+### ENERGY ###
+ene: ENERGY
+
+PRINT ARG=* STRIDE=1000 FILE=COLVAR FMT=%8.4f
