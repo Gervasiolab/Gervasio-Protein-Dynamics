@@ -23,3 +23,5 @@ The 11 models with an higher-than-average probe-residue contacts are the followi
 10- nsp1_model_22.pdb
 
 11- nsp1_model_25.pdb
+
+DOI: https://doi.org/10.7554/eLife.81167
