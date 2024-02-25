@@ -2,16 +2,15 @@
   <img width="500" height="191" src="img/cover_swish.gif">
 </p>
 
-# SWISH bootcamp
+# SWISH-X bootcamp
 
-This project contains the files required to setup a SWISH simulation, along with an example project (TEM-1 β-lactamase) and a guide for analysis. With respect to the results published in the 2016 JACS (https://pubs.acs.org/doi/10.1021/jacs.6b05425), here we are using an updated force-field and new pocket analysis scripts. The results are equivalent to those discussed in the paper.
+This project contains the files needed to set up a SWISH-X simulation for TEM-1 β-lactamase and a tutorial for the analysis. We will be working with the same data presented in https://doi.org/10.1101/2023.11.03.565527.  
 
 ## Getting started
-### Quick summary of the method (SWISH)
+### Quick summary of the method (SWISH-X)
 
-What is SWISH?
-SWISH (Sampling Water Interfaces through Scaled Hamiltonians, https://pubs.acs.org/doi/10.1021/jacs.6b05425) is a Hamiltonian Replica Exchange-based method that our grup developed to explore hidden ("cryptic") ligand binding sites in proteins. SWISH simulations combined with organic probes were shown to be a robust general approach for cryptic site discovery. By progressively scaling the nonbonded interactions of solvent molecules with apolar (carbon and sulfur) protein atoms, SWISH shifts the water properties toward more ligand-like behavior to increase cryptic site opening. The higher the value of scaling factor λ, the stronger the water affinity for apolar protein surface patches.
-SWISH can be used in two different ways, a validation mode and a discovery mode. The validation mode is typically done to sample known cryptic sites whereas the discovery mode is typically employed to sample new cryptic sites in a protein's structure. The setup of a SWISH simulation is virtually identical in both cases.
+What is SWISH-X?
+Under costruction, please refer to https://doi.org/10.1101/2023.11.03.565527 in the meantime
 
 ### Prerequisites
 
@@ -22,7 +21,7 @@ SWISH can be used in two different ways, a validation mode and a discovery mode.
 - stride, for secondary structure assignment. Installation guide is available at: http://webclu.bio.wzw.tum.de/stride/install.html. Alternatively, stride can also be used via webserver at: http://webclu.bio.wzw.tum.de/cgi-bin/stride/stridecgi.py
 
 ## TEM-1 β-lactamase
-TEM-1 β-lactamase is considered a model system for cryptic pocket detection and characterization. Here we will focus on the opening of a cryptic pocket in the structure of TEM-1 β-lactamase that was previously validated by crystallography. We selected two different TEM-1 β-lactamase structures, one apo (PDB:1jwp) and one holo (PDB:1pzo), and we will see how we can get a good sampling of the selected cryptic pocket employing SWISH. A detailed example project on how to set up and run a SWISH simulation for TEM-1 β-lactamase follows.
+TEM-1 β-lactamase is considered a model system for cryptic pocket detection and characterisation. Here we will focus on the opening of a cryptic pocket in the structure of TEM-1 β-lactamase that was previously validated by crystallography. We selected two different TEM-1 β-lactamase structures, one apo (PDB ID: 1JWP) and one holo (PDB ID:1PZO), and we will see how we can get a good sampling of the selected cryptic pocket using SWISH-X. A detailed example on how to set up and run a SWISH-X simulation for TEM-1 β-lactamase follows.
 
 ### Step 1: Structure selection
 For this example we will use the apo TEM-1 β-lactamase structure from the PDB entry 1jwp. We N-capped and protonated the system at a pH of 7.4, any preparation protocol works as long as the naming is force field consistent and you are confident about the final results. Here we used des-amber-SF1.0.ff, available at https://github.com/paulrobustelli/Force-Fields.
@@ -81,7 +80,7 @@ WHOLEMOLECULES STRIDE=1 ENTITY0=1-4066
 
 PRINT ARG=* STRIDE=10 FILE=AT_COLVAR FMT=%8.4f
 ```
-### Step 6: Include probe
+### Step 6: Include probes
 We can use GROMACS to include the target concentration of benzene molecules in our system. In this example we will have a final benzene concentration of 1 M. We can start from the neutralised structure file (`1jwp_ions.gro`) that we generated for the unbiased MD (step 2):
 ```
 gmx insert-molecules -f 1jwp_ions.gro -o 1jwp_benz.gro -ci benzene.gro -nmol 215 -replace SOL
@@ -122,7 +121,7 @@ Finally, we have to include in `1jwp_benz.top` the `benzene.itp` and other files
 ; Include topology for fragments
 #include "benzene.itp"
 ```
-### Step 7: Generate SWISH topologies
+### Step 7: Generate SWISH-X topologies
 We can now generate the scaled SWISH topologies by simply running:
 ```
 gmx grompp -pp 1jwp_swish.top -p 1jwp_benz.top -f nvt.mdp -c 1jwp_benz.gro -n 1jwp_benz.ndx -r 1jwp_benz.gro
@@ -161,8 +160,6 @@ tem1_swish
  ┃ ┗ 1jwp_swish5.top
  ┣ rep_6
  ┃ ┗ 1jwp_swish6.top
- ┣ rep_7
- ┃ ┗ 1jwp_swish7.top
  ┣ 1jwp_benz.gro
  ┣ 1jwp_benz.ndx
  ┣ 1jwp_cmap.dat
@@ -175,7 +172,7 @@ tem1_swish
  ┣ plumed.dat
  ┗ prod.mdp
 ```
-All of these files can be found in the `swish_files` folder. Note that the `1jwp_swish.sh` file will have to be modified according to the architecture you are running the simulations on, it is provided here as an example. The AT value of the UPPER_WALLS in the PLUMED file was set as described in Step 5.
+All of these files can be found in the `swishX_files` folder. Note that the `1jwp_swish.sh` file will have to be modified according to the architecture you are running the simulations on, it is provided here as an example. The AT value of the UPPER_WALLS in the PLUMED file was set as described in Step 5.
 
 ## Analysis of the results
 We will show here how the sampling with SWISH helped in opening a known cryptic pocket in the TEM-1 β-lactamase apo structure 1JWP.
@@ -201,11 +198,7 @@ We can now plot the resulting descriptor files to visualise the volume of the po
 ![](img/tem1_violin.png)
 
 ## Authors and acknowledgment
-- Vladas Oleinikovas
-- Havva Yalinca
-- Antonija Kuzmanic
-- Federico Comitani
-- Ladislav Hovan
 - Alberto Borsatto
-- Martijn Pieter Bemelmans
+- Eleonora Gianquinto
+- Valerio Rizzi
 - Francesco Luigi Gervasio
