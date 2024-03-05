@@ -32,7 +32,7 @@ A more detailed (and general) protocol for setting up and running an MD simulati
 
 ### Step 3: Probe selection and parametrisation
 In this example we have used benzene as a molecular probe to aid sampling of the target cryptic pocket. The parameterisation of organic molecules is typically done using programs such as Gaussian.
-To run SWISH with organic probes as mixed solvent, we need a set of files containing the parameters of the chosen organic probe, i.e. `benzene.gro`, `benzene.itp`, `benzene_atypes.itp` and `benzene_nbonded.itp`. These files will later be included in the modified topologies for SWISH. The content of each file is as follows:
+To run  with organic probes as mixed solvent, we need a set of files containing the parameters of the chosen organic probe, i.e. `benzene.gro`, `benzene.itp`, `benzene_atypes.itp` and `benzene_nbonded.itp`. These files will later be included in the modified topologies for . The content of each file is as follows:
 
  - `benzene.gro`: benzene structure file
  - `benzene.itp`: GROMACS topology file for benzene
@@ -123,7 +123,7 @@ Finally, we need to include the `benzene.itp` and the other files created during
 #include "benzene.itp"
 ```
 ### Step 7: Generate SWISH-X topologies
-We can now generate the scaled SWISH topologies by simply running:
+We can now generate the scaled SWISH-X topologies by simply running:
 ```
 gmx grompp -pp 1jwp_swish.top -p 1jwp_benz.top -f nvt.mdp -c 1jwp_benz.gro -n 1jwp_benz.ndx -r 1jwp_benz.gro
 
@@ -177,17 +177,17 @@ tem1_swishX
 All of these files can be found in the `swishX_files` folder. Note that the `1jwp_swish.sh` file will have to be modified according to the architecture you are running the simulations on, it is provided here as an example. The AT value of the UPPER_WALLS in the PLUMED file was set as described in Step 5.
 
 ## Analysis of the results
-We will now show how sampling with SWISH helped to open a known cryptic pocket in the TEM-1 β-lactamase apo structure 1JWP.
-To do this, we will use Mdpocket to monitor the volume of the cryptic pocket along the different replicas of the SWISH simulations and compare these results with those obtained from the unbiased MD simulation. 
+We will now show how our SWISH-X simulation successfully exposes the main cryptic pocket of TEM-1 β-lactamase.
+To do this, we will use Mdpocket to monitor the volume of the cryptic pocket along the different replicas of the SWISH-X simulation and compare these results with those obtained from the unbiased MD simulation. 
 First we need to generate a PDB with dummy atoms to delineate the pocket. We can do this by running Mdpocket on the TEM-1 β-lactamase holo structure 1PZO. In this PDB entry, the cryptic pocket is in its open conformation and accommodates a ligand. The Mdpocket command is:
 ```
 mdpocket --pdb_list pdb_list_file
 ```
 where `pdb_list_file` is a text file containing the path to the PDB file 1PZO.
 We can then select and save (in PDB format) the pocket of interest with pymol by visualing the output file `mdpout_freq_iso_0_5.pdb`. 
-We can now use this PDB file, namely `1pzo_refpock.pdb`, to monitor the volume of this pocket along different simulations of the TEM-1 β-lactamase apo structure 1JWP. First, we run Mdpocket on each SWISH replica. Here is an example for replica 0:
+We can now use this PDB file, namely `1pzo_refpock.pdb`, to monitor the volume of this pocket along different simulations of the TEM-1 β-lactamase apo structure 1JWP. First, we run Mdpocket on each SWISH-X replica. Here is an example for replica 0:
 ```
-mdpocket --trajectory_file rep_0/1jwp_swish_r0.xtc --trajectory_format xtc -f 1jwp_ref_pdb --selected_pocket 1pzo_refpock.pdb
+mdpocket --trajectory_file rep_0/1jwp_swishX_r0.xtc --trajectory_format xtc -f 1jwp_ref_pdb --selected_pocket 1pzo_refpock.pdb
 ```
 And we can do the same for the unbiased MD trajectory:
 ```
