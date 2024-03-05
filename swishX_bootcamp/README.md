@@ -8,10 +8,11 @@ This project contains the files needed to set up a SWISH-X simulation for TEM-1 
 
 ## Getting started
 ### Quick summary of the method (SWISH-X)
+What is SWISH-X? 
+SWISH-X (SWISH Expanded, https://doi.org/10.1101/2023.11.03.565527) is our latest cryptic pocket sampling strategy that combines SWISH (Sampling Water Interfaces through Scaled Hamiltonians, https://pubs.acs.org/doi/10.1021/jacs.6b05425) with OPES MultiThermal (https://doi.org/10.1103/PhysRevX.10.041034). SWISH-X is a Hamiltonian Replica Exchange-based method developed by our group to explore hidden ("cryptic") ligand binding sites in proteins. By progressively scaling the non-bonded interactions of solvent molecules with apolar (carbon and sulphur) protein atoms, SWISH-X shifts the water properties towards more ligand-like behaviour to increase the opening of cryptic sites. The higher the value of the scaling factor λ, the stronger the water affinity for apolar protein surface patches. Additionaly, to help overcoming the free energy barriers associated with cryptic pocket formation, SWISH-X, via OPES MultiThermal, allows the system to effectively sample a selected temperature range, in a way similar to simulated tempering techniques.
 
-What is SWISH-X?
-Under costruction, please refer to https://doi.org/10.1101/2023.11.03.565527 in the meantime
 
+SWISH-X can be used in two different ways, a validation mode and a discovery mode. The validation mode is typically used to sample known cryptic sites, whereas the discovery mode is typically used to sample new cryptic sites in the structure of a protein. The setup of a SWISH simulation is virtually identical in both cases.
 ### Prerequisites
 
 - a working installation of GROMACS patched with PLUMED. To check what the latest PLUMED-patchable GROMACS version is, see https://www.plumed.org/doc 
