@@ -10,7 +10,7 @@ This project contains the files required to setup a SWISH simulation, along with
 ### Quick summary of the method (SWISH)
 
 What is SWISH?
-SWISH (Sampling Water Interfaces through Scaled Hamiltonians, https://pubs.acs.org/doi/10.1021/jacs.6b05425) is a Hamiltonian Replica Exchange-based method that our grup developed to explore hidden ("cryptic") ligand binding sites in proteins. SWISH simulations combined with organic probes were shown to be a robust general approach for cryptic site discovery. By progressively scaling the nonbonded interactions of solvent molecules with apolar (carbon and sulfur) protein atoms, SWISH shifts the water properties toward more ligand-like behavior to increase cryptic site opening. The higher the value of scaling factor λ, the stronger the water affinity for apolar protein surface patches.
+SWISH (Sampling Water Interfaces through Scaled Hamiltonians, https://pubs.acs.org/doi/10.1021/jacs.6b05425) is a Hamiltonian Replica Exchange-based method that our group developed to explore hidden ("cryptic") ligand binding sites in proteins. SWISH simulations combined with organic probes were shown to be a robust general approach for cryptic site discovery. By progressively scaling the nonbonded interactions of solvent molecules with apolar (carbon and sulfur) protein atoms, SWISH shifts the water properties toward more ligand-like behavior to increase cryptic site opening. The higher the value of scaling factor λ, the stronger the water affinity for apolar protein surface patches.
 SWISH can be used in two different ways, a validation mode and a discovery mode. The validation mode is typically done to sample known cryptic sites whereas the discovery mode is typically employed to sample new cryptic sites in a protein's structure. The setup of a SWISH simulation is virtually identical in both cases.
 
 ### Prerequisites
@@ -110,7 +110,7 @@ NA               43
 CL               36
 BNZ              215
 ```
-Finally, we have to include in `1jwp_benz.top` the `benzene.itp` and other files generated during the probe parametrisation (Step 3):
+Finally, we have to include in `1jwp_benz.top` the `benzene.itp` and other files generated during the probe parameterisation (Step 3):
 ```
 ; Include forcefield parameters
 #include "../des-amber.ff/forcefield.itp"
@@ -129,7 +129,7 @@ gmx grompp -pp 1jwp_swish.top -p 1jwp_benz.top -f nvt.mdp -c 1jwp_benz.gro -n 1j
 
 python SWISH_GMX_general_v2.py -f 1jwp_swish.top -smin 1 -smax 1.35 -carbonyl C -nreps 8
 ```
-NOTE: You can include position restraints directly into the SWISH topologies by passing a .mdp file containing the `define = -DPOSRES` line to `gmx grompp` and including the corresponding `posre.itp` file in the folder where `gmx grompp` is run. Please remeber to add the `#ifdef POSRES` and `#endif` clauses to your topologies. 
+NOTE: You can include position restraints directly into the SWISH topologies by passing a .mdp file containing the `define = -DPOSRES` line to `gmx grompp` and including the corresponding `posre.itp` file in the folder where `gmx grompp` is run. Please remember to add the `#ifdef POSRES` and `#endif` clauses to your topologies. 
 ```
 #ifdef POSRES
 [ position_restraints ]
@@ -200,7 +200,7 @@ We can now plot the resulting descriptor files to visualise the volume of the po
 
 ![](img/tem1_violin.png)
 
-## Authors and acknowledgment
+## Authors and acknowledgments
 - Vladas Oleinikovas
 - Havva Yalinca
 - Antonija Kuzmanic
