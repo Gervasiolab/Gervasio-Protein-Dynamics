@@ -144,7 +144,7 @@ NOTE: You can include position restraints directly into the SWISH-X topologies b
   4066     1  1000  1000  1000
 #endif 
 ```
-## Step 8: OpesMultithermal
+## Step 8: OPES MultiThermal
 
 ## Step 9: Run SWISH-X
 A convenient folder structure for running SWISH looks like this:
