@@ -148,26 +148,25 @@ NOTE: You can include position restraints directly into the SWISH-X topologies b
 ## Step 9: Run SWISH-X
 A convenient folder structure for running SWISH looks like this:
 ```
-tem1_swish
+tem1_swishX
  ┣ rep_0
- ┃ ┗ 1jwp_swish0.top
+ ┃ ┗ 1jwp_swishx0.top
  ┣ rep_1
- ┃ ┗ 1jwp_swish1.top
+ ┃ ┗ 1jwp_swishx1.top
  ┣ rep_2
- ┃ ┗ 1jwp_swish2.top
+ ┃ ┗ 1jwp_swishx2.top
  ┣ rep_3
- ┃ ┗ 1jwp_swish3.top
+ ┃ ┗ 1jwp_swishx3.top
  ┣ rep_4
- ┃ ┗ 1jwp_swish4.top
+ ┃ ┗ 1jwp_swishx4.top
  ┣ rep_5
- ┃ ┗ 1jwp_swish5.top
- ┣ rep_6
- ┃ ┗ 1jwp_swish6.top
+ ┃ ┗ 1jwp_swishx5.top
+ ┃ 
  ┣ 1jwp_benz.gro
  ┣ 1jwp_benz.ndx
  ┣ 1jwp_cmap.dat
  ┣ 1jwp_cmap.pdb
- ┣ 1jwp_swish.sh
+ ┣ 1jwp_swishX.sh
  ┣ em.mdp
  ┣ npt.mdp
  ┣ npt2.mdp
