@@ -145,6 +145,29 @@ NOTE: You can include position restraints directly into the SWISH-X topologies b
 #endif 
 ```
 ## Step 8: OPES MultiThermal
+We can now specify the temperature range we want to explore with the SWISH-X simulation. To do this, we simply need to add an OPES EXPANDED term to our plumed file:
+```
+######################
+#plumed.dat for SWISH#
+######################
+#RESTART
+#####################
+### RESTRAINT CMAP ###
+#####################
+MOLINFO STRUCTURE=./1jwp_cmap.pdb
+INCLUDE FILE=./1jwp_cmap.dat
+WHOLEMOLECULES STRIDE=1 ENTITY0=1-4066
+uwall: UPPER_WALLS ARG=cmap AT=30 KAPPA=500.0 EXP=2 EPS=1 # Upper Wall (restraint_4_swish)
+#################################
+######### DEFINE_OPES_EXPANDED ###
+##################################
+ene: ENERGY
+ecv: ECV_MULTITHERMAL ARG=ene TEMP_MAX=350
+opesX: OPES_EXPANDED ARG=ecv.* FILE=DeltaFs.data PACE=5000
+
+PRINT ARG=* STRIDE=1000 FILE=COLVAR FMT=%8.4f
+```
+Here we are effectively sampling a temperature range from the selected thermostat temperature (300 K) up to 350 K. We update the OPES EXPANDED bias every 5000 steps. It is important to check how the exploration of the potential energy progresses along the simulation, an example of a desired profile can be found in the Supplementary Figure 2 at https://doi.org/10.1101/2023.11.03.565527. More detailed information on the OPES EXPANDED action can be found at https://www.plumed.org/doc-v2.8/user-doc/html/_o_p_e_s__e_x_p_a_n_d_e_d.html. 
 
 ## Step 9: Run SWISH-X
 A convenient folder structure for running SWISH looks like this:
