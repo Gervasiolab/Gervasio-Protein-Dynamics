@@ -221,7 +221,7 @@ NOTE: All the trajectories must be aligned to the same reference structure. This
 
 We can now plot the resulting descriptor files to visualise the volume of the pocket along the different trajectories:
 <p align="center">
-  <img width="500" height="500" src="img/tem1_violins.png">
+  <img width="500" height="648" src="img/tem1_violins.png">
 </p>
 
 ## Authors and acknowledgements
