@@ -208,20 +208,18 @@ First we need to generate a PDB with dummy atoms to delineate the pocket. We can
 mdpocket --pdb_list pdb_list_file
 ```
 where `pdb_list_file` is a text file containing the path to the PDB file 1PZO.
-We can then select and save (in PDB format) the pocket of interest with pymol by visualing the output file `mdpout_freq_iso_0_5.pdb`. 
-We can now use this PDB file, namely `1pzo_refpock.pdb`, to monitor the volume of this pocket along different simulations of the TEM-1 β-lactamase apo structure 1JWP. First, we run Mdpocket on each SWISH-X replica. Here is an example for replica 0:
+We can then use PyMol to select the pocket of interest and save it (in PDB format) by visualising the output file `mdpout_freq_iso_0_5.pdb`. 
+We can now use this PDB file, namely `1pzo_refpock.pdb`, to monitor the volume of this pocket along the SWISH-X simulation of the TEM-1 β-lactamase. First, we run Mdpocket on each SWISH-X replica. Here is an example for replica 0:
 ```
 mdpocket --trajectory_file rep_0/1jwp_swishX_r0.xtc --trajectory_format xtc -f 1jwp_ref_pdb --selected_pocket 1pzo_refpock.pdb
 ```
-And we can do the same for the unbiased MD trajectory:
-```
-mdpocket --trajectory_file 1jwp_unbiased.xtc --trajectory_format xtc -f 1jwp_ref_pdb --selected_pocket 1pzo_refpock.pdb
-```
-NOTE: All the trajectories must be aligned to the same reference structure. This reference structure has to be aligned to the structure (1PZO) used to obtain `1pzo_refpock.pdb` (see fpocket manual for more details).
 
-We can now plot the resulting descriptor files to visualise the volume of the pocket along the different trajectories:
+NOTE: All the trajectories must be aligned to the same reference structure. This reference structure has to be aligned to the structure used to obtain `1pzo_refpock.pdb` (see fpocket manual for more details).
 
-![](img/tem1_violins.png)
+We can now plot the resulting descriptor files to visualise the volume of the pocket along the different SWISH-X replicas:
+<p align="center">
+  <img width="648" height="500" src="img/tem1_violins.png">
+</p>
 
 ## Authors and acknowledgements
 - Alberto Borsatto
