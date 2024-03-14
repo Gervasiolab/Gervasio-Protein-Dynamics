@@ -220,8 +220,9 @@ mdpocket --trajectory_file 1jwp_unbiased.xtc --trajectory_format xtc -f 1jwp_ref
 NOTE: All the trajectories must be aligned to the same reference structure. This reference structure has to be aligned to the structure (1PZO) used to obtain `1pzo_refpock.pdb` (see fpocket manual for more details).
 
 We can now plot the resulting descriptor files to visualise the volume of the pocket along the different trajectories:
-
-![](img/tem1_violins.png)
+<p align="center">
+  <img width="500" height="191" src="img/tem1_violins.png">
+</p>
 
 ## Authors and acknowledgements
 - Alberto Borsatto
