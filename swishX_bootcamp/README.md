@@ -90,7 +90,7 @@ gmx insert-molecules -f 1jwp_ions.gro -o 1jwp_benz.gro -ci benzene.gro -nmol 215
 The number of benzene molecules to be added to reach the target molar concentration x (1 in this example) can be calculated using the following formula:
 
 
-$$ probes = \frac{(6.023 \cdot 10^{23} \cdot x \cdot 29.94A^3 \cdot waters)}{10^{27} A^3} $$
+$$ probes = \frac{(6.023 \cdot 10^{23} \cdot x \cdot 29.94 A^3 \cdot waters)}{10^{27} A^3} $$
 
 and the number of water molecules (SOL) can be obtained from the previously generated topology (Step 2, `1jwp_ions.top`):
 ```
@@ -126,9 +126,9 @@ Finally, we need to include the `benzene.itp` and the other files created during
 ### Step 7: Generate SWISH-X topologies
 We can now generate the scaled SWISH-X topologies by simply running:
 ```
-gmx grompp -pp 1jwp_swish.top -p 1jwp_benz.top -f nvt.mdp -c 1jwp_benz.gro -n 1jwp_benz.ndx -r 1jwp_benz.gro
+gmx grompp -pp 1jwp_swishx.top -p 1jwp_benz.top -f nvt.mdp -c 1jwp_benz.gro -n 1jwp_benz.ndx -r 1jwp_benz.gro
 
-python SWISH_GMX_general_v2.py -f 1jwp_swish.top -smin 1 -smax 1.35 -carbonyl C -nreps 8
+python SWISH_GMX_general_v2.py -f 1jwp_swishx.top -smin 1 -smax 1.35 -carbonyl C -nreps 6
 ```
 NOTE: You can include position restraints directly into the SWISH-X topologies by passing a .mdp file containing the `define = -DPOSRES` line to `gmx grompp` and including the corresponding `posre.itp` file in the folder where `gmx grompp` is run. Please remember to add the `#ifdef POSRES` and `#endif` clauses to your topologies. 
 ```
