@@ -1,0 +1,6 @@
+[submodule "DeepLNE"]
+	path = DeepLNE
+	url = git@github.com:ThorbenF/DeepLNE.git
+[submodule "DeepLNE_PlusPlus"]
+	path = DeepLNE_PlusPlus
+	url = git@github.com:ThorbenF/DeepLNE_PlusPlus.git
